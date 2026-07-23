@@ -34,6 +34,9 @@ test("server-renders the AXIS observatory", async () => {
   assert.match(html, /AI-Ready 표준 가이드라인/);
   assert.match(html, /Rules as Code/);
   assert.match(html, /지역 AX 동행지원 패키지/);
+  assert.match(html, /법령 데이터와 법제사무 디지털화/);
+  assert.match(html, /공공서비스 메쉬와 지자체 BPR/);
+  assert.match(html, /지자체 AX\/DX: 프런트야드·백야드 통합/);
   assert.match(html, /2026년 7월 21일 공개된 두 원문/);
   assert.match(html, /국가, 기관, 업무 키워드 검색/);
   assert.match(html, /미국은 왜 연방과 주를 나눠서 봐야 할까/);
