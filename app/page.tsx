@@ -154,13 +154,47 @@ const CASE_STUDIES: CaseStudy[] = [
     stage: "확산",
     date: "2026.07",
     agency: "Digital Agency",
-    title: "Government AI ‘GENAI’",
-    summary: "법령·관보·행정문서를 연결한 정부 공통 AI 환경을 전 부처로 확장하고 국내 LLM도 시험한다.",
-    insight: "공통 데이터와 공통 환경을 국가 단위로 설계해 부처별 중복 구축을 줄인다.",
+    title: "Government AI ‘GENAI’ 전 부처 실증",
+    summary: "법령·관보·행정문서를 연결한 정부 공통 AI 환경을 전 부처로 확장하고, AI 앱·에이전트와 국내 LLM도 시험한다.",
+    insight: "공통 데이터·모델·관리 규칙을 국가 단위로 설계해 부처별 중복 구축과 도입 장벽을 줄인다.",
     metric: "약 18만 명 대상",
-    tags: ["법령", "RAG", "국내LLM"],
+    tags: ["법령", "AI에이전트", "국내LLM"],
     group: "정부",
     url: "https://www.digital.go.jp/en/policies/genai",
+  },
+  {
+    id: "japan-ai-driven-state",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency · Cabinet Office",
+    title: "AI 구동형 국가를 향한 AX/DX 중점계획",
+    summary: "생성 AI와 AI 에이전트를 행정·내부개발·조달에 넓히고, 자율형·제안형 행정서비스로 전환하는 국가 방향을 제시한다.",
+    insight: "AI를 도구 도입이 아니라 제도·업무·시스템을 함께 바꾸는 국가 운영모델로 정의한다.",
+    metric: "AX/DX 4대 기둥",
+    tags: ["AI구동형국가", "AI에이전트", "인재·수용성"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    id: "japan-government-ai-workspace",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency · MIC · Cabinet Secretariat",
+    title: "가버먼트 AI 워크스페이스와 MCP 접근환경",
+    summary: "회의·출장 같은 공통업무를 BPR한 뒤 AI 에이전트와 연결한 업무시스템을 만들고, 행정시스템의 MCP 대응도 검토한다.",
+    insight: "업무 선정 → BPR → 프로토타입 → 순차 운영의 흐름을 명시해 ‘툴 설치’와 업무혁신을 분리한다.",
+    metric: "2026 BPR·프로토타입",
+    tags: ["BPR", "MCP", "공통업무"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
   },
   {
     id: "singapore-pair",
@@ -390,12 +424,12 @@ const STAGE_OPTIONS: Stage[] = ["전체", "전략", "실증", "확산", "운영"
 
 const SIGNALS = [
   {
-    date: "07.10",
+    date: "07.21",
     label: "일본",
-    title: "정부 AI ‘GENAI’ 전 부처 확산",
-    text: "18만 명 규모의 대규모 실증과 행정문서 RAG를 함께 추진",
+    title: "AI 구동형 국가를 우선정책으로",
+    text: "가버먼트 AI 워크스페이스·MCP·지자체 AX/DX를 하나의 실행축으로 묶었다",
     tone: "blue",
-    href: "https://www.digital.go.jp/en/policies/genai",
+    href: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
   },
   {
     date: "06.10",
@@ -420,6 +454,25 @@ const SIGNALS = [
     text: "정책·역량·고영향 업무의 세 축으로 공공가치를 측정",
     tone: "ochre",
     href: "https://publications.jrc.ec.europa.eu/repository/handle/JRC143539",
+  },
+];
+
+const JAPAN_POLICY_OUTLINES = [
+  {
+    label: "본문 · 47쪽",
+    date: "2026.07.21",
+    title: "AI 구동형 국가로의 전환",
+    summary: "생성 AI에서 AI 에이전트·피지컬 AI로의 변화를 전제로, 국가·지자체·사회 전체의 AX/DX를 인구감소 대응과 성장전략으로 묶는다.",
+    points: ["국가 AX/DX 기반의 고도화·강인화", "AI·에이전트를 행정·내부개발·조달에 활용", "자율형·제안형 행정서비스를 지향"],
+    href: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    label: "重点政策一覧 · 114쪽",
+    date: "2026.07.21",
+    title: "업무 인프라를 공통화하고, 현장에서 실험",
+    summary: "전 부처 공통 AI 환경을 확장하는 동시에, BPR 기반 워크스페이스와 MCP 접근환경, AI-ready 조달·개발, 지자체 AX/DX를 구체 사업으로 쪼갠다.",
+    points: ["가버먼트 AI 워크스페이스 프로토타입", "AI 에이전트의 정부시스템 접근방식(MCP) 검토", "지자체 창구·백오피스 자동화와 BI·공동조달"],
+    href: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
   },
 ];
 
@@ -515,6 +568,7 @@ export default function Home() {
         </a>
         <nav className="main-nav" aria-label="주요 메뉴">
           <a href="#signals">오늘의 시그널</a>
+          <a href="#japan-policy">일본 7.21 정책</a>
           <a href="#explorer">사례 탐색</a>
           <a href="#compare">미국 연방 vs 주</a>
           <a href="#playbook">업무혁신 플레이북</a>
@@ -601,6 +655,33 @@ export default function Home() {
                 <p>{signal.text}</p>
                 <span className="card-arrow" aria-hidden="true">↗</span>
               </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="section japan-policy-section" id="japan-policy" aria-labelledby="japan-policy-title">
+          <div className="section-heading split-heading">
+            <div>
+              <p className="eyebrow">JAPAN · POLICY PULSE</p>
+              <h2 id="japan-policy-title">일본은 AI를 ‘업무 인프라’로 정의했다</h2>
+            </div>
+            <p className="section-intro">2026년 7월 21일 공개된 두 원문을 AX 관점으로 다시 읽었습니다. 방향은 본문에서, 실행 단위는 중점정책 목록에서 확인할 수 있습니다.</p>
+          </div>
+          <div className="japan-policy-lede">
+            <span>일본의 설계 문장</span>
+            <p>AI를 붙이는 과업을 고르는 데서 멈추지 않고, <strong>업무를 BPR한 뒤 공통 플랫폼·데이터·접근 규칙을 만들고 현장에 순차 배포</strong>하는 국가 실행모델입니다.</p>
+          </div>
+          <div className="japan-policy-grid">
+            {JAPAN_POLICY_OUTLINES.map((policy) => (
+              <article className="japan-policy-card" key={policy.label}>
+                <div className="japan-policy-meta"><span>{policy.label}</span><time dateTime="2026-07-21">{policy.date}</time></div>
+                <h3>{policy.title}</h3>
+                <p>{policy.summary}</p>
+                <ul>
+                  {policy.points.map((point) => <li key={point}>{point}</li>)}
+                </ul>
+                <a href={policy.href} target="_blank" rel="noreferrer">원문 열기 <span aria-hidden="true">↗</span></a>
+              </article>
             ))}
           </div>
         </section>
@@ -761,7 +842,7 @@ export default function Home() {
               <div><span>03</span><p><strong>사람의 일 표시</strong><br />자동화된 과업과 남겨진 판단·책임을 함께 기록합니다.</p></div>
             </div>
           </div>
-          <div className="source-note"><span>LAST UPDATED</span><strong>2026.07.24</strong><p>초기 버전은 공개 원문 20건을 큐레이션했습니다. 수치는 원문 발표 기준이며, 정부 발표와 민간 리서치의 성격이 다르므로 직접 비교하기보다 설계 질문을 찾는 용도로 읽어주세요.</p></div>
+          <div className="source-note"><span>LAST UPDATED</span><strong>2026.07.24</strong><p>공개 원문 23건을 큐레이션했습니다. 이번 업데이트에는 일본 디지털청의 2026년 7월 21일 중점계획 본문과 정책 목록을 반영했습니다. 수치는 원문 발표 기준이며, 정부 발표와 민간 리서치의 성격이 다르므로 직접 비교하기보다 설계 질문을 찾는 용도로 읽어주세요.</p></div>
         </section>
       </main>
 

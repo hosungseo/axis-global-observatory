@@ -99,6 +99,24 @@ button { cursor: pointer; }
 .signal-card p { max-width: 220px; color: var(--muted); font-size: 12px; line-height: 1.65; word-break: keep-all; }
 .card-arrow { color: var(--cobalt); position: absolute; bottom: 22px; right: 21px; font-size: 18px; }
 
+.japan-policy-section { border-top: 1px solid var(--rule); background: #eee9df; }
+.japan-policy-section .section-heading { margin-bottom: 28px; }
+.japan-policy-lede { display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: start; padding: 20px 0 23px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.japan-policy-lede > span { color: var(--red); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+.japan-policy-lede p { max-width: 800px; margin: 0; color: var(--navy); font-family: var(--serif); font-size: 20px; line-height: 1.5; letter-spacing: -.035em; word-break: keep-all; }
+.japan-policy-lede strong { color: var(--cobalt); font-weight: 700; }
+.japan-policy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+.japan-policy-card { min-height: 330px; padding: 23px 24px 24px; background: var(--paper-bright); border: 1px solid var(--rule); position: relative; }
+.japan-policy-card:first-child { border-top: 3px solid var(--navy); }
+.japan-policy-card:last-child { border-top: 3px solid var(--cobalt); }
+.japan-policy-meta { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 10px; letter-spacing: .04em; }
+.japan-policy-meta time { color: #85847c; }
+.japan-policy-card h3 { max-width: 430px; margin: 36px 0 11px; font-family: var(--serif); font-size: 26px; letter-spacing: -.055em; line-height: 1.25; }
+.japan-policy-card > p { max-width: 590px; min-height: 62px; color: var(--muted); font-size: 12px; line-height: 1.7; margin-bottom: 13px; word-break: keep-all; }
+.japan-policy-card ul { margin: 0; padding: 13px 0 0 17px; border-top: 1px solid var(--rule); color: #435262; font-size: 11px; line-height: 1.75; }
+.japan-policy-card li { padding-left: 2px; }
+.japan-policy-card a { position: absolute; bottom: 23px; right: 24px; color: var(--cobalt); font-size: 10px; border-bottom: 1px solid rgba(30,87,200,.4); padding-bottom: 3px; }
+
 .explorer-section { padding-top: 82px; }
 .explorer-heading { margin-bottom: 28px; }
 .result-note { color: var(--muted); font-size: 12px; }
@@ -228,6 +246,8 @@ button { cursor: pointer; }
   .section { padding: 64px 0; }
   .split-heading { display: block; }
   .section-intro { margin-top: 18px; }
+  .japan-policy-lede { display: block; }
+  .japan-policy-lede p { margin-top: 12px; font-size: 18px; }
   .signal-grid, .case-grid, .compare-grid, .playbook-grid, .method-grid { grid-template-columns: 1fr; }
   .signal-card, .playbook-card { border-right: 0; border-bottom: 1px solid var(--rule); }
   .signal-card:last-child, .playbook-card:last-child { border-bottom: 0; }
@@ -239,6 +259,9 @@ button { cursor: pointer; }
   .stage-select select { flex: 1; }
   .case-card { min-height: 0; }
   .case-card h3, .case-summary { min-height: 0; }
+  .japan-policy-grid { grid-template-columns: 1fr; }
+  .japan-policy-card { min-height: 0; padding-bottom: 62px; }
+  .japan-policy-card > p { min-height: 0; }
   .compare-inner { width: min(100% - 36px, 620px); }
   .compare-card { min-height: 330px; }
   .compare-takeaway { display: block; }

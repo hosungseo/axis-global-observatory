@@ -29,6 +29,9 @@ test("server-renders the AXIS observatory", async () => {
   assert.match(html, /어떻게 일하는가/);
   assert.match(html, /오늘의 AX 시그널/);
   assert.match(html, /Government AI ‘GENAI’/);
+  assert.match(html, /AI 구동형 국가/);
+  assert.match(html, /가버먼트 AI 워크스페이스/);
+  assert.match(html, /2026년 7월 21일 공개된 두 원문/);
   assert.match(html, /국가, 기관, 업무 키워드 검색/);
   assert.match(html, /미국은 왜 연방과 주를 나눠서 봐야 할까/);
   assert.match(html, /기술보다 먼저 바꿔야 할 네 가지/);
