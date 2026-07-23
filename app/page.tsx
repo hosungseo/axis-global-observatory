@@ -9,6 +9,7 @@ type Group = "전체" | "정부" | "민간";
 
 type CaseStudy = {
   id: string;
+  code?: string;
   flag: string;
   country: string;
   region: Exclude<Region, "전체">;
@@ -24,6 +25,135 @@ type CaseStudy = {
   group: Exclude<Group, "전체">;
   url: string;
 };
+
+const JAPAN_EXECUTION_ITEMS: CaseStudy[] = [
+  {
+    id: "japan-ai-ready-guidelines",
+    code: "1-11",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency",
+    title: "AI-Ready 표준 가이드라인",
+    summary: "요건정의·설계·개발 자료를 Markdown·JSON 등 기계가독 형식으로 정비해 정부 시스템 조달과 내부개발에 생성 AI를 쓸 수 있게 한다.",
+    insight: "모델 도입보다 먼저 업무 문서의 형식을 바꾸는 데이터·문서 운영 과제다.",
+    metric: "2026 방법·절차 정리",
+    tags: ["AI-Ready", "문서표준", "내부개발"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-ai-procurement",
+    code: "1-12",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "실증",
+    date: "2026.07",
+    agency: "Digital Agency",
+    title: "AI 활용을 전제로 한 정부 조달 평가",
+    summary: "AI로 비용·기간·품질을 개선하는 제안과 AI-driven development를 정부 정보시스템 조달 평가에 반영하는 방식을 검토한다.",
+    insight: "AI를 쓰는 발주자와 사업자를 따로 보지 않고 조달 자체를 AX 실험장으로 삼는다.",
+    metric: "2026 시범 도입",
+    tags: ["조달", "AI-driven", "DMP"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-rules-as-code",
+    code: "2-18",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency · 관계 부처",
+    title: "Rules as Code로 행정 규칙을 실행 가능한 데이터로",
+    summary: "급부·세제 등 제도·절차를 AI가 해석·처리할 수 있는 코드로 바꾸어 제도 개정에 따른 시스템 수정과 행정업무를 빠르게 한다.",
+    insight: "법령·신청서·표준사양서를 코드화하면 AI 에이전트가 제도 변경을 따라가는 업무 기반이 된다.",
+    metric: "세제 등 고빈도 개정 분야부터",
+    tags: ["Rules as Code", "법령데이터", "자동화"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-regional-ax",
+    code: "4-19",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "주·지방",
+    stage: "실증",
+    date: "2026.07",
+    agency: "Ministry of Internal Affairs and Communications",
+    title: "지역 AX 동행지원 패키지",
+    summary: "인구감소·인력부족에 대응해 AI·자동운전 실증, 디지털 인재·체계 지원, 지역 통신 인프라를 묶어 지방정부 모델을 동행 지원한다.",
+    insight: "지자체 AX는 솔루션 배포가 아니라 인재·체계·인프라와 동행지원까지 포함한 실행 패키지다.",
+    metric: "2027년 말까지 약 30건",
+    tags: ["지역AX", "디지털인재", "실증"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-ai-skills-platform",
+    code: "6-2",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Cabinet Office · IPA",
+    title: "AI 시대 디지털 인재 스킬 플랫폼",
+    summary: "생성 AI·에이전트로 직무·스킬 정의가 유동화되는 상황에 맞춰 스킬 플랫폼을 확장하고 다음 정부 목표·KPI를 설계한다.",
+    insight: "업무혁신의 성패를 도입률이 아니라 문제설정·책임·스킬 이동으로 측정한다.",
+    metric: "2026년 말 차기 목표 정리",
+    tags: ["스킬", "KPI", "인재"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    id: "japan-government-ai-global",
+    code: "4-51/52",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "초국가",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency · Ministry of Internal Affairs and Communications",
+    title: "源内 OSS와 가버먼트 AI 국제공동개발",
+    summary: "정부 AI ‘源内’의 OSS화를 바탕으로 ASEAN·글로벌사우스와 수요·과제를 조사하고 공동개발·협력 모델을 만든다.",
+    insight: "정부 내부 도구를 국제 공공재·협력 모델로 확장해 AI 자율성을 외교·개발 의제로 연결한다.",
+    metric: "2026 조사 → 2027 이후 구현",
+    tags: ["OSS", "국제협력", "AI자율성"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    id: "japan-ai-administrative-governance",
+    code: "1-15",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency",
+    title: "행정통칙법 관점 AI 거버넌스",
+    summary: "AI의 편익을 살리면서 권리·투명성·공정성을 확보하기 위해 행정절차·불복심사 관점의 가이드라인과 쟁점을 검토한다.",
+    insight: "책임 있는 업무재설계는 사람의 최종 판단점과 시민의 이의제기 경로까지 설계하는 일이다.",
+    metric: "2026 가이드라인 검토",
+    tags: ["거버넌스", "투명성", "권리보호"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+];
 
 const CASE_STUDIES: CaseStudy[] = [
   {
@@ -196,6 +326,7 @@ const CASE_STUDIES: CaseStudy[] = [
     group: "정부",
     url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
   },
+  ...JAPAN_EXECUTION_ITEMS,
   {
     id: "singapore-pair",
     flag: "🇸🇬",
@@ -471,7 +602,7 @@ const JAPAN_POLICY_OUTLINES = [
     date: "2026.07.21",
     title: "업무 인프라를 공통화하고, 현장에서 실험",
     summary: "전 부처 공통 AI 환경을 확장하는 동시에, BPR 기반 워크스페이스와 MCP 접근환경, AI-ready 조달·개발, 지자체 AX/DX를 구체 사업으로 쪼갠다.",
-    points: ["가버먼트 AI 워크스페이스 프로토타입", "AI 에이전트의 정부시스템 접근방식(MCP) 검토", "지자체 창구·백오피스 자동화와 BI·공동조달"],
+    points: ["가버먼트 AI 워크스페이스 프로토타입", "AI 에이전트의 정부시스템 접근방식(MCP) 검토", "AI-Ready·Rules as Code·지자체 AX/DX"],
     href: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
   },
 ];
@@ -684,6 +815,20 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <div className="japan-execution-heading">
+            <span>MORE FROM THE SAME PLAN</span>
+            <p>업무혁신 담당자가 바로 비교할 수 있도록, 두 원문에서 추가로 뽑은 실행 항목입니다.</p>
+          </div>
+          <div className="japan-execution-grid">
+            {JAPAN_EXECUTION_ITEMS.map((item) => (
+              <a className="japan-execution-card" href={item.url} target="_blank" rel="noreferrer" key={item.id}>
+                <div className="japan-execution-meta"><span>{item.code}</span><span>{item.metric}</span></div>
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+                <div className="japan-execution-tags">{item.tags.slice(0, 2).map((tag) => <span key={tag}>{tag}</span>)}<span aria-hidden="true">↗</span></div>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section className="section explorer-section" id="explorer" aria-labelledby="explorer-title">
@@ -842,7 +987,7 @@ export default function Home() {
               <div><span>03</span><p><strong>사람의 일 표시</strong><br />자동화된 과업과 남겨진 판단·책임을 함께 기록합니다.</p></div>
             </div>
           </div>
-          <div className="source-note"><span>LAST UPDATED</span><strong>2026.07.24</strong><p>공개 원문 23건을 큐레이션했습니다. 이번 업데이트에는 일본 디지털청의 2026년 7월 21일 중점계획 본문과 정책 목록을 반영했습니다. 수치는 원문 발표 기준이며, 정부 발표와 민간 리서치의 성격이 다르므로 직접 비교하기보다 설계 질문을 찾는 용도로 읽어주세요.</p></div>
+          <div className="source-note"><span>LAST UPDATED</span><strong>2026.07.24</strong><p>공개 원문 30건을 큐레이션했습니다. 이번 업데이트에는 일본 디지털청의 2026년 7월 21일 중점계획에서 AI-Ready, 조달, Rules as Code, 지역 AX, 인재, 거버넌스 항목을 추가로 뽑았습니다. 수치는 원문 발표 기준이며, 정부 발표와 민간 리서치의 성격이 다르므로 직접 비교하기보다 설계 질문을 찾는 용도로 읽어주세요.</p></div>
         </section>
       </main>
 
