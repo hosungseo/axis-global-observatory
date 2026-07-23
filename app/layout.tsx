@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://axis-global-observatory.ghtjd10855.chatgpt.site"),
   title: "AXIS — Global AX Observatory",
   description: "세계 정부와 조직이 AI로 일하는 방식을 비교하는 원문 기반 AX 관측소.",
   openGraph: {
