@@ -37,6 +37,7 @@ test("server-renders the AXIS observatory", async () => {
   assert.match(html, /법령 데이터와 법제사무 디지털화/);
   assert.match(html, /공공서비스 메쉬와 지자체 BPR/);
   assert.match(html, /지자체 AX\/DX: 프런트야드·백야드 통합/);
+  assert.match(html, /GSS: 정부 공통 업무환경/);
   assert.match(html, /2026년 7월 21일 공개된 두 원문/);
   assert.match(html, /국가, 기관, 업무 키워드 검색/);
   assert.match(html, /미국은 왜 연방과 주를 나눠서 봐야 할까/);
@@ -53,6 +54,9 @@ test("keeps the finished product free of starter infrastructure", async () => {
   ]);
 
   assert.match(page, /^"use client";/);
+  assert.match(page, /회계 DX와 원스온리/);
+  assert.match(page, /AI로 구급대 운영 최적화/);
+  assert.match(page, /학교 현장 AI 활용과 교무 개선/);
   assert.doesNotMatch(page, /SkeletonPreview|_sites-preview|codex-preview/);
   assert.match(layout, /AXIS — Global AX Observatory/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|next\/font/);
