@@ -12,7 +12,10 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern site",
     "db:generate": "drizzle-kit generate",
-    "source:candidates": "node scripts/source-candidates.mjs"
+    "source:candidates": "node scripts/source-candidates.mjs",
+    "check:data": "node scripts/check-data.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "prebuild": "node scripts/check-data.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
