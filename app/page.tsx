@@ -783,6 +783,60 @@ const JAPAN_EXECUTION_ITEMS: CaseStudy[] = [
     group: "정부",
     url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
   },
+  {
+    id: "japan-yata-shield",
+    code: "5-1",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Cabinet Secretariat",
+    title: "Project YATA-Shield — AI 시대 사이버보안 패키지",
+    summary: "AI 성능이 고도화되는 상황에서도 사이버보안을 확보하기 위해 중요인프라 사업자 대응과 취약점 발견·수정을 함께 담은 정부 전체 대책 패키지 ‘Project YATA-Shield’를 추진하고 시행상황을 기동적으로 점검한다.",
+    insight: "AI가 공격 속도·규모를 키우는 국면을 개별 대응이 아니라 범정부 통합 패키지로 관리한다.",
+    metric: "12개 부처·기관 합동 시행",
+    tags: ["사이버보안", "중요인프라", "범정부"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    id: "japan-civil-court-digital",
+    code: "3-190",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "확산",
+    date: "2026.07",
+    agency: "Ministry of Justice",
+    title: "민사재판절차 전면 디지털화",
+    summary: "민사소송이 2026년 5월 전면 디지털화되었고, 민사집행·보전·도산·가사사건 등도 사법부의 자율적 판단을 존중하며 2028년 6월까지 전면 시행하도록 환경을 정비한다.",
+    insight: "사법 절차라는 고신뢰 업무도 단계적 입법과 환경정비를 거쳐 종이에서 데이터로 옮긴다.",
+    metric: "민사소송 2026.5 전면 디지털화 · 2028.6 확대",
+    tags: ["사법디지털화", "민사소송", "절차전환"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-teacher-workload",
+    code: "3-94",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "주·지방",
+    stage: "확산",
+    date: "2026.07",
+    agency: "MEXT",
+    title: "교사 근무방식 개혁 — 대시보드로 초과근무 가시화",
+    summary: "2029년도까지 교사의 월평균 시간외 근무를 약 30시간으로 줄이는 목표 아래, ‘학교와 교사 업무의 3분류’ 추진상황과 교육위원회별 초과근무를 정책 대시보드로 가시화해 각 위원회가 시책을 재검토하게 한다.",
+    insight: "근무방식 개혁을 구호가 아니라 교육위원회별 초과근무 데이터의 상시 공개로 밀어붙인다.",
+    metric: "2029년도 월 시간외 근무 약 30시간 목표",
+    tags: ["근무방식개혁", "정책대시보드", "교원"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
 ];
 
 const JAPAN_POLICY_FEATURED_ITEMS = JAPAN_EXECUTION_ITEMS.slice(0, 18);
@@ -1372,6 +1426,129 @@ const CASE_STUDIES: CaseStudy[] = [
 const REGION_OPTIONS: Region[] = ["전체", "한국", "북미", "유럽", "아시아·태평양", "글로벌"];
 const STAGE_OPTIONS: Stage[] = ["전체", "전략", "실증", "확산", "운영"];
 
+// 업무방식(테마) 분류축 — '정부가 AI로 일하는 방식'을 7개 주제로 나눈다.
+type Theme =
+  | "공통 기반"
+  | "조달·개발"
+  | "데이터·규칙"
+  | "대민 서비스"
+  | "현장·집행"
+  | "인재·업무개혁"
+  | "거버넌스·주권";
+
+const THEME_ORDER: Theme[] = [
+  "공통 기반",
+  "조달·개발",
+  "데이터·규칙",
+  "대민 서비스",
+  "현장·집행",
+  "인재·업무개혁",
+  "거버넌스·주권",
+];
+
+const THEME_LABEL: Record<Theme, string> = {
+  "공통 기반": "공통 기반·워크스페이스",
+  "조달·개발": "조달·개발 방식",
+  "데이터·규칙": "데이터·규칙·레지스트리",
+  "대민 서비스": "대민 서비스 재설계",
+  "현장·집행": "현장·집행 자동화",
+  "인재·업무개혁": "인재·역량·업무개혁",
+  "거버넌스·주권": "거버넌스·주권·감리",
+};
+
+const CASE_THEME: Record<string, Theme> = {
+  // 공통 기반·워크스페이스
+  "japan-regional-ax": "공통 기반",
+  "japan-public-service-mesh": "공통 기반",
+  "japan-gss-standard-workspace": "공통 기반",
+  "japan-local-standardization": "공통 기반",
+  "japan-cloud-security-dashboard": "공통 기반",
+  "japan-gennai": "공통 기반",
+  "japan-government-ai-workspace": "공통 기반",
+  "kr-seoul-ai-chat-llm": "공통 기반",
+  "kr-pps-worknet-genai": "공통 기반",
+  "singapore-pair": "공통 기반",
+  "eu-pilots": "공통 기반",
+  "usa-gsa-usai-platform": "공통 기반",
+  "singapore-govtech-aibots": "공통 기반",
+  "france-albert-state-ai": "공통 기반",
+  "ca-poppy": "공통 기반",
+  // 조달·개발 방식
+  "japan-ai-ready-guidelines": "조달·개발",
+  "japan-ai-procurement": "조달·개발",
+  "japan-dmp": "조달·개발",
+  "japan-gcas-devstack": "조달·개발",
+  // 데이터·규칙·레지스트리
+  "japan-rules-as-code": "데이터·규칙",
+  "japan-base-registry": "데이터·규칙",
+  "japan-law-data": "데이터·규칙",
+  "japan-open-data": "데이터·규칙",
+  "japan-public-records": "데이터·규칙",
+  "japan-geo-ai": "데이터·규칙",
+  "kr-judgment-open": "데이터·규칙",
+  // 대민 서비스 재설계
+  "japan-user-centered-ai": "대민 서비스",
+  "japan-municipal-ax": "대민 서비스",
+  "japan-front-service-api": "대민 서비스",
+  "japan-egov": "대민 서비스",
+  "japan-benefit-infra": "대민 서비스",
+  "japan-counter-dx": "대민 서비스",
+  "japan-civil-court-digital": "대민 서비스",
+  "kr-nts-genai-tax-counseling": "대민 서비스",
+  "ca-pilots": "대민 서비스",
+  "singapore-vica": "대민 서비스",
+  // 현장·집행 자동화
+  "japan-school-ai": "현장·집행",
+  "japan-disaster-data": "현장·집행",
+  "japan-emergency-ai": "현장·집행",
+  "japan-smart-city": "현장·집행",
+  "japan-labor-inspection-ai": "현장·집행",
+  "kr-customs-xsync-ai-xray": "현장·집행",
+  // 인재·역량·업무개혁
+  "japan-ai-skills-platform": "인재·업무개혁",
+  "japan-accounting-dx": "인재·업무개혁",
+  "japan-ina-dx": "인재·업무개혁",
+  "japan-senior-digital-talent": "인재·업무개혁",
+  "japan-travel-expense-bpr": "인재·업무개혁",
+  "japan-teacher-workload": "인재·업무개혁",
+  "kr-ai-lab": "인재·업무개혁",
+  "kr-champion": "인재·업무개혁",
+  "uk-humphrey-civil-service-suite": "인재·업무개혁",
+  "estonia-ai-leap-2025": "인재·업무개혁",
+  "mckinsey-operating-model": "인재·업무개혁",
+  "bcg-ai-at-work": "인재·업무개혁",
+  "microsoft-frontier": "인재·업무개혁",
+  "pwc-jobs-barometer": "인재·업무개혁",
+  "accenture-work": "인재·업무개혁",
+  // 거버넌스·주권·감리
+  "japan-government-ai-global": "거버넌스·주권",
+  "japan-ai-administrative-governance": "거버넌스·주권",
+  "japan-genai-guideline": "거버넌스·주권",
+  "japan-analog-regulation": "거버넌스·주권",
+  "japan-digital-law-review": "거버넌스·주권",
+  "japan-ai-basic-plan": "거버넌스·주권",
+  "japan-human-centered-ai": "거버넌스·주권",
+  "japan-ai-sovereignty": "거버넌스·주권",
+  "japan-policy-dashboard": "거버넌스·주권",
+  "japan-portfolio-audit": "거버넌스·주권",
+  "japan-govt-ospo": "거버넌스·주권",
+  "japan-yata-shield": "거버넌스·주권",
+  "japan-ai-driven-state": "거버넌스·주권",
+  "kr-common-guide": "거버넌스·주권",
+  "kr-casebook": "거버넌스·주권",
+  "us-inventory": "거버넌스·주권",
+  "us-gao": "거버넌스·주권",
+  "canada-register": "거버넌스·주권",
+  "uk-playbook": "거버넌스·주권",
+  "eu-public-admin": "거버넌스·주권",
+  "australia-policy": "거버넌스·주권",
+  "deloitte-enterprise": "거버넌스·주권",
+};
+
+function themeOf(item: CaseStudy): Theme {
+  return CASE_THEME[item.id] ?? "거버넌스·주권";
+}
+
 const SIGNALS = [
   {
     date: "07.21",
@@ -1465,6 +1642,8 @@ export default function Home() {
   const [group, setGroup] = useState<Group>("전체");
   const [region, setRegion] = useState<Region>("전체");
   const [stage, setStage] = useState<Stage>("전체");
+  const [theme, setTheme] = useState<Theme | "전체">("전체");
+  const [country, setCountry] = useState<string>("전체");
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
 
@@ -1474,19 +1653,66 @@ export default function Home() {
       const matchesGroup = group === "전체" || item.group === group;
       const matchesRegion = region === "전체" || item.region === region;
       const matchesStage = stage === "전체" || item.stage === stage;
+      const matchesTheme = theme === "전체" || themeOf(item) === theme;
+      const matchesCountry = country === "전체" || item.country === country;
       const matchesQuery =
         !query ||
         [item.country, item.agency, item.title, item.summary, item.insight, ...item.tags]
           .join(" ")
           .toLowerCase()
           .includes(query);
-      return matchesGroup && matchesRegion && matchesStage && matchesQuery;
+      return matchesGroup && matchesRegion && matchesStage && matchesTheme && matchesCountry && matchesQuery;
     }).sort((a, b) => b.date.localeCompare(a.date));
-  }, [group, region, stage, search]);
+  }, [group, region, stage, theme, country, search]);
 
   const governmentCount = CASE_STUDIES.filter((item) => item.group === "정부").length;
   const privateCount = CASE_STUDIES.filter((item) => item.group === "민간").length;
   const visibleCases = showAll ? filteredCases : filteredCases.slice(0, 9);
+
+  // 국가 인덱스: 정부 사례가 있는 국가를 사례 수 순으로 정렬
+  const countryIndex = useMemo(() => {
+    const counts = new Map<string, { flag: string; count: number }>();
+    for (const item of CASE_STUDIES) {
+      if (item.group !== "정부") continue;
+      const entry = counts.get(item.country) ?? { flag: item.flag, count: 0 };
+      entry.count += 1;
+      counts.set(item.country, entry);
+    }
+    return [...counts.entries()]
+      .map(([name, v]) => ({ name, ...v }))
+      .sort((a, b) => b.count - a.count);
+  }, []);
+
+  // 국가×주제 매트릭스: 대표 국가(사례 3건 이상) × 7개 주제
+  const matrix = useMemo(() => {
+    const topCountries = countryIndex.filter((c) => c.count >= 2);
+    return topCountries.map((c) => ({
+      country: c.name,
+      flag: c.flag,
+      cells: THEME_ORDER.map((th) => ({
+        theme: th,
+        count: CASE_STUDIES.filter(
+          (item) => item.group === "정부" && item.country === c.name && themeOf(item) === th,
+        ).length,
+      })),
+    }));
+  }, [countryIndex]);
+
+  const resetFilters = () => {
+    setSearch("");
+    setRegion("전체");
+    setStage("전체");
+    setGroup("전체");
+    setTheme("전체");
+    setCountry("전체");
+    setShowAll(false);
+  };
+
+  const focusExplorer = (patch: () => void) => {
+    patch();
+    setShowAll(false);
+    document.getElementById("explorer")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const setGroupAndScroll = (nextGroup: Group) => {
     setGroup(nextGroup);
@@ -1504,7 +1730,7 @@ export default function Home() {
         <div className="top-strip-inner">
           <span className="status-dot" aria-hidden="true" />
           <span>AXIS는 원문으로 확인하는 글로벌 AX 관측소입니다.</span>
-          <span className="top-strip-date">2026.07.24 기준</span>
+          <span className="top-strip-date">2026.07.26 기준</span>
         </div>
       </div>
 
@@ -1520,7 +1746,7 @@ export default function Home() {
           <a href="#signals">오늘의 시그널</a>
           <a href="#japan-policy">일본 7.21 정책</a>
           <a href="#explorer">사례 탐색</a>
-          <a href="#compare">미국 연방 vs 주</a>
+          <a href="#matrix">국가×주제 매트릭스</a>
           <a href="#playbook">업무혁신 플레이북</a>
         </nav>
         <a className="header-link" href="#sources">
@@ -1661,6 +1887,30 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="country-index" aria-label="국가별 바로가기">
+            <button
+              type="button"
+              className={country === "전체" ? "country-chip is-active" : "country-chip"}
+              aria-pressed={country === "전체"}
+              onClick={() => { setCountry("전체"); setShowAll(false); }}
+            >
+              전체 국가
+            </button>
+            {countryIndex.map((c) => (
+              <button
+                type="button"
+                className={country === c.name ? "country-chip is-active" : "country-chip"}
+                aria-pressed={country === c.name}
+                key={c.name}
+                onClick={() => { setCountry(country === c.name ? "전체" : c.name); setShowAll(false); }}
+              >
+                <span aria-hidden="true">{c.flag}</span>
+                {c.name}
+                <em>{c.count}</em>
+              </button>
+            ))}
+          </div>
+
           <div className="explorer-toolbar">
             <div className="segmented-control" role="group" aria-label="사례 유형">
               {(["전체", "정부", "민간"] as Group[]).map((item) => (
@@ -1707,6 +1957,20 @@ export default function Home() {
             </label>
           </div>
 
+          <div className="filter-row theme-row">
+            <div className="filter-group theme-filter" aria-label="업무방식 주제 필터">
+              <span className="filter-label">업무방식</span>
+              <button type="button" className={theme === "전체" ? "filter-chip is-active" : "filter-chip"} aria-pressed={theme === "전체"} onClick={() => { setTheme("전체"); setShowAll(false); }}>
+                전체
+              </button>
+              {THEME_ORDER.map((item) => (
+                <button type="button" className={theme === item ? "filter-chip is-active" : "filter-chip"} aria-pressed={theme === item} key={item} onClick={() => { setTheme(theme === item ? "전체" : item); setShowAll(false); }}>
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="case-grid">
             {visibleCases.map((item) => (
               <article className="case-card" key={item.id}>
@@ -1715,9 +1979,10 @@ export default function Home() {
                   <span className={`stage-badge stage-${item.stage}`}>{item.stage}</span>
                 </div>
                 <div className="case-card-meta">
-                  <span>{item.agency}</span>
+                  <span className="case-theme">{themeOf(item)}</span>
                   <time dateTime={item.date.replace(".", "-")}>{item.date}</time>
                 </div>
+                <div className="case-agency">{item.agency}</div>
                 <h3>{item.title}</h3>
                 <p className="case-summary">{item.summary}</p>
                 <div className="case-insight"><span>읽을 포인트</span>{item.insight}</div>
@@ -1734,7 +1999,7 @@ export default function Home() {
             <div className="empty-state">
               <strong>조건에 맞는 사례가 없습니다.</strong>
               <p>검색어 또는 필터를 조금 넓혀보세요.</p>
-              <button type="button" className="button button-secondary" onClick={() => { setSearch(""); setRegion("전체"); setStage("전체"); setGroup("전체"); }}>필터 초기화</button>
+              <button type="button" className="button button-secondary" onClick={resetFilters}>필터 초기화</button>
             </div>
           )}
           {filteredCases.length > 9 && (
@@ -1744,32 +2009,52 @@ export default function Home() {
           )}
         </section>
 
-        <section className="compare-section" id="compare" aria-labelledby="compare-title">
+        <section className="compare-section" id="matrix" aria-labelledby="matrix-title">
           <div className="section compare-inner">
             <div className="section-heading split-heading compare-heading">
               <div>
-                <p className="eyebrow light">03 · US LENS</p>
-                <h2 id="compare-title">미국은 왜 연방과 주를 나눠서 봐야 할까</h2>
+                <p className="eyebrow light">03 · MATRIX</p>
+                <h2 id="matrix-title">국가 × 업무방식 매트릭스</h2>
               </div>
-              <p className="section-intro light-copy">같은 AI라도 중앙의 가드레일과 현장의 업무 실험은 다른 속도로 움직입니다.</p>
+              <p className="section-intro light-copy">어느 나라가 AI를 ‘어느 업무방식’에 배치했는지 한눈에 봅니다. 숫자를 누르면 해당 사례로 이동합니다.</p>
             </div>
-            <div className="compare-grid">
-              <div className="compare-card federal">
-                <div className="compare-card-label"><span>FEDERAL</span><span>연방정부</span></div>
-                <h3>목록화·공개·책임 추적</h3>
-                <p>OMB 요구에 따라 기관별 사용 사례를 인벤토리로 모으고, 고영향 사용에는 위험·공개·피드백 구조를 붙입니다.</p>
-                <div className="compare-line"><span>대표 메커니즘</span><strong>AI Use Case Inventory</strong></div>
-                <a href="https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory" target="_blank" rel="noreferrer">연방 인벤토리 보기 ↗</a>
-              </div>
-              <div className="compare-card state">
-                <div className="compare-card-label"><span>STATE</span><span>캘리포니아</span></div>
-                <h3>공통 플랫폼·빠른 파일럿</h3>
-                <p>Poppy 같은 보안형 내부 도구와 교통·세무·민원 파일럿을 동시에 밀어 현장 업무에서 학습합니다.</p>
-                <div className="compare-line"><span>대표 메커니즘</span><strong>Poppy + 부처 파일럿</strong></div>
-                <a href="https://www.cdt.ca.gov/poppy/" target="_blank" rel="noreferrer">주정부 파일럿 보기 ↗</a>
-              </div>
+            <div className="matrix-scroll">
+              <table className="matrix-table">
+                <thead>
+                  <tr>
+                    <th scope="col" className="matrix-corner">국가 \ 업무방식</th>
+                    {THEME_ORDER.map((th) => (
+                      <th scope="col" key={th}>{th}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {matrix.map((row) => (
+                    <tr key={row.country}>
+                      <th scope="row" className="matrix-country">
+                        <span aria-hidden="true">{row.flag}</span> {row.country}
+                      </th>
+                      {row.cells.map((cell) => (
+                        <td key={cell.theme} className={cell.count ? "matrix-cell has-count" : "matrix-cell"}>
+                          {cell.count ? (
+                            <button
+                              type="button"
+                              onClick={() => focusExplorer(() => { setCountry(row.country); setTheme(cell.theme); })}
+                              aria-label={`${row.country} · ${cell.theme} ${cell.count}건 보기`}
+                            >
+                              {cell.count}
+                            </button>
+                          ) : (
+                            <span aria-hidden="true">·</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <div className="compare-takeaway"><span>AXIS TAKEAWAY</span><p>연방은 “무엇을 쓰는가”를 보이게 만들고, 주정부는 “어떻게 일하는가”를 빠르게 시험합니다. 조직의 AX 로드맵에는 두 레이어가 모두 필요합니다.</p></div>
+            <div className="compare-takeaway"><span>AXIS TAKEAWAY</span><p>공통 기반과 거버넌스는 여러 나라가 겹치지만, 현장·집행과 인재·업무개혁의 밀도는 나라마다 다릅니다. 빈 칸은 ‘아직 관측되지 않은 조합’입니다.</p></div>
           </div>
         </section>
 
@@ -1806,7 +2091,7 @@ export default function Home() {
               <div><span>03</span><p><strong>사람의 일 표시</strong><br />자동화된 과업과 남겨진 판단·책임을 함께 기록합니다.</p></div>
             </div>
           </div>
-          <div className="source-note"><span>LAST UPDATED</span><strong>2026.07.24</strong><p>공개 원문 52건을 큐레이션했습니다. 이번 업데이트에는 일본 디지털청의 2026년 7월 21일 중점계획에서 공통 업무환경, 디지털 법제심사, 오픈데이터, 전자신청, 회계·기록관리, 재난·응급·교육·공간정보 사례를 추가로 뽑았습니다. 수치는 원문 발표 기준이며, 정부 발표와 민간 리서치의 성격이 다르므로 직접 비교하기보다 설계 질문을 찾는 용도로 읽어주세요.</p></div>
+          <div className="source-note"><span>LAST UPDATED</span><strong>2026.07.26</strong><p>공개 원문 {CASE_STUDIES.length}건을 큐레이션하고, 모든 사례를 ‘업무방식’ 7개 주제로 분류했습니다. 이번 업데이트에는 한국(서울시·조달청·관세청·국세청)과 미국·영국·에스토니아·싱가포르·프랑스 사례, 그리고 일본 디지털청 2026년 7월 21일 중점계획의 추가 시책을 반영했습니다. 국가×업무방식 매트릭스와 국가 인덱스로 비교 경로를 넓혔습니다. 수치는 원문 발표 기준이며, 정부 발표와 민간 리서치의 성격이 다르므로 직접 비교하기보다 설계 질문을 찾는 용도로 읽어주세요.</p></div>
         </section>
       </main>
 
