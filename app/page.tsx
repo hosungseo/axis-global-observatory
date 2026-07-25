@@ -1856,6 +1856,114 @@ function isDeepPolicy(item: CaseStudy): boolean {
   return item.group === "정부" && Boolean(item.code);
 }
 
+// ── 2번째 직교축: '사람의 일'이 어떻게 바뀌나 ──
+type WorkChange = "자동화" | "증강" | "셀프서비스화" | "재배치" | "기반화";
+const WORK_CHANGE_ORDER: WorkChange[] = ["자동화", "증강", "셀프서비스화", "재배치", "기반화"];
+const WORK_CHANGE_DESC: Record<WorkChange, string> = {
+  자동화: "반복 업무를 AI가 대체·자동 처리",
+  증강: "사람의 판단·작성·검색을 AI가 보조",
+  셀프서비스화: "전문가·창구 없이 현업·시민이 직접",
+  재배치: "역할·권한·인력을 다시 배치·감독",
+  기반화: "공통 기반·표준·규칙을 재사용 자산으로",
+};
+const CASE_WORKCHANGE: Record<string, WorkChange> = {
+  "japan-regional-ax": "기반화", "japan-public-service-mesh": "기반화", "japan-gss-standard-workspace": "기반화",
+  "japan-local-standardization": "기반화", "japan-cloud-security-dashboard": "기반화", "japan-gennai": "증강",
+  "japan-government-ai-workspace": "증강", "kr-seoul-ai-chat-llm": "증강", "kr-pps-worknet-genai": "증강",
+  "singapore-pair": "증강", "eu-pilots": "기반화", "usa-gsa-usai-platform": "증강",
+  "singapore-govtech-aibots": "셀프서비스화", "france-albert-state-ai": "증강", "ca-poppy": "증강",
+  "germany-baergpt-berlin": "증강", "india-bhashini-language-ai-dpi": "기반화",
+  "japan-ai-ready-guidelines": "기반화", "japan-ai-procurement": "기반화", "japan-dmp": "기반화",
+  "japan-gcas-devstack": "증강", "japan-public-saas": "기반화",
+  "japan-rules-as-code": "기반화", "japan-base-registry": "기반화", "japan-law-data": "기반화",
+  "japan-open-data": "기반화", "japan-public-records": "기반화", "japan-geo-ai": "증강", "kr-judgment-open": "기반화",
+  "japan-user-centered-ai": "셀프서비스화", "japan-municipal-ax": "셀프서비스화", "japan-front-service-api": "자동화",
+  "japan-egov": "셀프서비스화", "japan-benefit-infra": "자동화", "japan-counter-dx": "셀프서비스화",
+  "japan-civil-court-digital": "셀프서비스화", "kr-nts-genai-tax-counseling": "셀프서비스화", "ca-pilots": "셀프서비스화",
+  "singapore-vica": "셀프서비스화", "japan-common-chatbot": "셀프서비스화", "japan-tax-social-online": "자동화",
+  "japan-total-design": "셀프서비스화", "japan-hellowork": "셀프서비스화", "uae-u-ask-unified-chatbot": "셀프서비스화",
+  "ukraine-diia-ai-agent": "셀프서비스화",
+  "japan-school-ai": "증강", "japan-disaster-data": "기반화", "japan-emergency-ai": "자동화",
+  "japan-smart-city": "기반화", "japan-labor-inspection-ai": "자동화", "kr-customs-xsync-ai-xray": "자동화",
+  "japan-police-dx": "셀프서비스화", "japan-wellbeing-index": "증강",
+  "japan-ai-skills-platform": "재배치", "japan-accounting-dx": "자동화", "japan-ina-dx": "재배치",
+  "japan-senior-digital-talent": "재배치", "japan-travel-expense-bpr": "자동화", "japan-teacher-workload": "재배치",
+  "kr-ai-lab": "셀프서비스화", "kr-champion": "재배치", "uk-humphrey-civil-service-suite": "증강",
+  "estonia-ai-leap-2025": "재배치", "mckinsey-operating-model": "재배치", "bcg-ai-at-work": "재배치",
+  "microsoft-frontier": "재배치", "pwc-jobs-barometer": "재배치", "accenture-work": "재배치",
+  "japan-hr-digital": "기반화", "japan-internal-talent": "재배치", "taiwan-taigto-ai-talent-office": "재배치",
+  "japan-government-ai-global": "기반화", "japan-ai-administrative-governance": "기반화", "japan-genai-guideline": "기반화",
+  "japan-analog-regulation": "기반화", "japan-digital-law-review": "기반화", "japan-ai-basic-plan": "기반화",
+  "japan-human-centered-ai": "기반화", "japan-ai-sovereignty": "기반화", "japan-policy-dashboard": "증강",
+  "japan-portfolio-audit": "재배치", "japan-govt-ospo": "기반화", "japan-yata-shield": "기반화",
+  "japan-ai-driven-state": "기반화", "kr-common-guide": "기반화", "kr-casebook": "기반화",
+  "us-inventory": "재배치", "us-gao": "재배치", "canada-register": "재배치", "uk-playbook": "기반화",
+  "eu-public-admin": "기반화", "australia-policy": "기반화", "deloitte-enterprise": "재배치",
+  "japan-agency-capacity": "재배치", "japan-procurement-gate": "재배치",
+};
+function workChangeOf(item: CaseStudy): WorkChange {
+  return CASE_WORKCHANGE[item.id] ?? "기반화";
+}
+
+// ── 2단계 계층: 주제별 서브주제 ──
+const SUBTHEMES: Record<Theme, string[]> = {
+  "공통 기반": ["워크스페이스", "게이트웨이", "인프라"],
+  "조달·개발": ["AI조달", "개발환경", "공통기반"],
+  "데이터·규칙": ["레지스트리", "규칙코드화", "오픈데이터"],
+  "대민 서비스": ["상담·챗봇", "신청·원스톱", "서비스에이전트"],
+  "현장·집행": ["재난·응급", "규제·집행", "지역·교육"],
+  "인재·업무개혁": ["인재확보·육성", "내부BPR", "데이터기반관리"],
+  "거버넌스·주권": ["AI원칙·거버넌스", "감리·예산", "주권·자율성"],
+};
+const CASE_SUBTHEME: Record<string, string> = {
+  "japan-regional-ax": "인프라", "japan-public-service-mesh": "인프라", "japan-gss-standard-workspace": "워크스페이스",
+  "japan-local-standardization": "인프라", "japan-cloud-security-dashboard": "인프라", "japan-gennai": "워크스페이스",
+  "japan-government-ai-workspace": "워크스페이스", "kr-seoul-ai-chat-llm": "게이트웨이", "kr-pps-worknet-genai": "게이트웨이",
+  "singapore-pair": "워크스페이스", "eu-pilots": "인프라", "usa-gsa-usai-platform": "게이트웨이",
+  "singapore-govtech-aibots": "워크스페이스", "france-albert-state-ai": "게이트웨이", "ca-poppy": "워크스페이스",
+  "germany-baergpt-berlin": "워크스페이스", "india-bhashini-language-ai-dpi": "인프라",
+  "japan-ai-ready-guidelines": "AI조달", "japan-ai-procurement": "AI조달", "japan-dmp": "AI조달",
+  "japan-gcas-devstack": "개발환경", "japan-public-saas": "공통기반",
+  "japan-rules-as-code": "규칙코드화", "japan-base-registry": "레지스트리", "japan-law-data": "규칙코드화",
+  "japan-open-data": "오픈데이터", "japan-public-records": "레지스트리", "japan-geo-ai": "오픈데이터", "kr-judgment-open": "오픈데이터",
+  "japan-user-centered-ai": "신청·원스톱", "japan-municipal-ax": "신청·원스톱", "japan-front-service-api": "신청·원스톱",
+  "japan-egov": "신청·원스톱", "japan-benefit-infra": "신청·원스톱", "japan-counter-dx": "신청·원스톱",
+  "japan-civil-court-digital": "신청·원스톱", "kr-nts-genai-tax-counseling": "상담·챗봇", "ca-pilots": "상담·챗봇",
+  "singapore-vica": "상담·챗봇", "japan-common-chatbot": "상담·챗봇", "japan-tax-social-online": "신청·원스톱",
+  "japan-total-design": "신청·원스톱", "japan-hellowork": "신청·원스톱", "uae-u-ask-unified-chatbot": "상담·챗봇",
+  "ukraine-diia-ai-agent": "서비스에이전트",
+  "japan-school-ai": "지역·교육", "japan-disaster-data": "재난·응급", "japan-emergency-ai": "재난·응급",
+  "japan-smart-city": "지역·교육", "japan-labor-inspection-ai": "규제·집행", "kr-customs-xsync-ai-xray": "규제·집행",
+  "japan-police-dx": "규제·집행", "japan-wellbeing-index": "지역·교육",
+  "japan-ai-skills-platform": "인재확보·육성", "japan-accounting-dx": "내부BPR", "japan-ina-dx": "내부BPR",
+  "japan-senior-digital-talent": "인재확보·육성", "japan-travel-expense-bpr": "내부BPR", "japan-teacher-workload": "데이터기반관리",
+  "kr-ai-lab": "인재확보·육성", "kr-champion": "인재확보·육성", "uk-humphrey-civil-service-suite": "내부BPR",
+  "estonia-ai-leap-2025": "인재확보·육성", "mckinsey-operating-model": "내부BPR", "bcg-ai-at-work": "내부BPR",
+  "microsoft-frontier": "내부BPR", "pwc-jobs-barometer": "인재확보·육성", "accenture-work": "내부BPR",
+  "japan-hr-digital": "내부BPR", "japan-internal-talent": "인재확보·육성", "taiwan-taigto-ai-talent-office": "인재확보·육성",
+  "japan-government-ai-global": "주권·자율성", "japan-ai-administrative-governance": "AI원칙·거버넌스", "japan-genai-guideline": "AI원칙·거버넌스",
+  "japan-analog-regulation": "AI원칙·거버넌스", "japan-digital-law-review": "AI원칙·거버넌스", "japan-ai-basic-plan": "AI원칙·거버넌스",
+  "japan-human-centered-ai": "AI원칙·거버넌스", "japan-ai-sovereignty": "주권·자율성", "japan-policy-dashboard": "감리·예산",
+  "japan-portfolio-audit": "감리·예산", "japan-govt-ospo": "주권·자율성", "japan-yata-shield": "AI원칙·거버넌스",
+  "japan-ai-driven-state": "AI원칙·거버넌스", "kr-common-guide": "AI원칙·거버넌스", "kr-casebook": "AI원칙·거버넌스",
+  "us-inventory": "감리·예산", "us-gao": "감리·예산", "canada-register": "감리·예산", "uk-playbook": "AI원칙·거버넌스",
+  "eu-public-admin": "AI원칙·거버넌스", "australia-policy": "AI원칙·거버넌스", "deloitte-enterprise": "AI원칙·거버넌스",
+  "japan-agency-capacity": "감리·예산", "japan-procurement-gate": "감리·예산",
+};
+function subThemeOf(item: CaseStudy): string {
+  return CASE_SUBTHEME[item.id] ?? SUBTHEMES[themeOf(item)][0];
+}
+
+// ── 근거유형: URL 도메인으로 도출 ──
+type SourceType = "정부 원문" | "민간 리서치";
+function sourceTypeOf(item: CaseStudy): SourceType {
+  return /mckinsey|bcg\.com|deloitte|microsoft|pwc\.com|accenture/.test(item.url) ? "민간 리서치" : "정부 원문";
+}
+// 근거 강도: 핵심 수치에 숫자가 있으면 '수치'
+function hasQuant(item: CaseStudy): boolean {
+  return /\d/.test(item.metric);
+}
+
 const SIGNALS = [
   {
     date: "07.21",
@@ -1952,18 +2060,24 @@ export default function Home() {
   const [theme, setTheme] = useState<Theme | "전체">("전체");
   const [country, setCountry] = useState<string>("전체");
   const [search, setSearch] = useState("");
+  const [workChange, setWorkChange] = useState<WorkChange | "전체">("전체");
+  const [subTheme, setSubTheme] = useState<string>("전체");
   const [showAll, setShowAll] = useState(false);
   const [showDeep, setShowDeep] = useState(false);
+  const [matrixAxis, setMatrixAxis] = useState<"theme" | "work">("theme");
 
   const filteredCases = useMemo(() => {
     const query = search.trim().toLowerCase();
-    // 국가·주제·검색 등 명시적 조건이 있으면 심화 시책도 함께 보여준다.
-    const explicit = country !== "전체" || theme !== "전체" || Boolean(query);
+    // 국가·주제·사람의일·검색 등 명시적 조건이 있으면 심화 시책도 함께 보여준다.
+    const explicit =
+      country !== "전체" || theme !== "전체" || workChange !== "전체" || subTheme !== "전체" || Boolean(query);
     return CASE_STUDIES.filter((item) => {
       const matchesGroup = group === "전체" || item.group === group;
       const matchesRegion = region === "전체" || item.region === region;
       const matchesStage = stage === "전체" || item.stage === stage;
       const matchesTheme = theme === "전체" || themeOf(item) === theme;
+      const matchesSub = subTheme === "전체" || subThemeOf(item) === subTheme;
+      const matchesWork = workChange === "전체" || workChangeOf(item) === workChange;
       const matchesCountry = country === "전체" || item.country === country;
       const matchesDepth = showDeep || explicit || !isDeepPolicy(item);
       const matchesQuery =
@@ -1972,9 +2086,9 @@ export default function Home() {
           .join(" ")
           .toLowerCase()
           .includes(query);
-      return matchesGroup && matchesRegion && matchesStage && matchesTheme && matchesCountry && matchesDepth && matchesQuery;
+      return matchesGroup && matchesRegion && matchesStage && matchesTheme && matchesSub && matchesWork && matchesCountry && matchesDepth && matchesQuery;
     }).sort((a, b) => b.date.localeCompare(a.date));
-  }, [group, region, stage, theme, country, search, showDeep]);
+  }, [group, region, stage, theme, subTheme, workChange, country, search, showDeep]);
 
   const deepCount = CASE_STUDIES.filter(isDeepPolicy).length;
 
@@ -1997,19 +2111,21 @@ export default function Home() {
   }, []);
 
   // 국가×주제 매트릭스: 대표 국가(사례 3건 이상) × 7개 주제
+  const matrixCols = matrixAxis === "theme" ? THEME_ORDER : WORK_CHANGE_ORDER;
+  const classify = matrixAxis === "theme" ? themeOf : workChangeOf;
   const matrix = useMemo(() => {
     const topCountries = countryIndex.filter((c) => c.count >= 2);
     return topCountries.map((c) => ({
       country: c.name,
       flag: c.flag,
-      cells: THEME_ORDER.map((th) => ({
-        theme: th,
+      cells: matrixCols.map((col) => ({
+        col,
         count: CASE_STUDIES.filter(
-          (item) => item.group === "정부" && item.country === c.name && themeOf(item) === th,
+          (item) => item.group === "정부" && item.country === c.name && classify(item) === col,
         ).length,
       })),
     }));
-  }, [countryIndex]);
+  }, [countryIndex, matrixCols, classify]);
 
   const resetFilters = () => {
     setSearch("");
@@ -2017,6 +2133,8 @@ export default function Home() {
     setStage("전체");
     setGroup("전체");
     setTheme("전체");
+    setSubTheme("전체");
+    setWorkChange("전체");
     setCountry("전체");
     setShowAll(false);
   };
@@ -2295,11 +2413,41 @@ export default function Home() {
           <div className="filter-row theme-row">
             <div className="filter-group theme-filter" aria-label="업무방식 주제 필터">
               <span className="filter-label">업무방식</span>
-              <button type="button" className={theme === "전체" ? "filter-chip is-active" : "filter-chip"} aria-pressed={theme === "전체"} onClick={() => { setTheme("전체"); setShowAll(false); }}>
+              <button type="button" className={theme === "전체" ? "filter-chip is-active" : "filter-chip"} aria-pressed={theme === "전체"} onClick={() => { setTheme("전체"); setSubTheme("전체"); setShowAll(false); }}>
                 전체
               </button>
               {THEME_ORDER.map((item) => (
-                <button type="button" className={theme === item ? "filter-chip is-active" : "filter-chip"} aria-pressed={theme === item} key={item} onClick={() => { setTheme(theme === item ? "전체" : item); setShowAll(false); }}>
+                <button type="button" className={theme === item ? "filter-chip is-active" : "filter-chip"} aria-pressed={theme === item} key={item} onClick={() => { const next = theme === item ? "전체" : item; setTheme(next); setSubTheme("전체"); setShowAll(false); }}>
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {theme !== "전체" && (
+            <div className="filter-row subtheme-row">
+              <div className="filter-group" aria-label="세부주제 필터">
+                <span className="filter-label">└ 세부</span>
+                <button type="button" className={subTheme === "전체" ? "filter-chip is-active" : "filter-chip"} aria-pressed={subTheme === "전체"} onClick={() => { setSubTheme("전체"); setShowAll(false); }}>
+                  전체
+                </button>
+                {SUBTHEMES[theme].map((item) => (
+                  <button type="button" className={subTheme === item ? "filter-chip is-active" : "filter-chip"} aria-pressed={subTheme === item} key={item} onClick={() => { setSubTheme(subTheme === item ? "전체" : item); setShowAll(false); }}>
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="filter-row work-row">
+            <div className="filter-group work-filter" aria-label="사람의 일 필터">
+              <span className="filter-label">사람의 일</span>
+              <button type="button" className={workChange === "전체" ? "filter-chip is-active" : "filter-chip"} aria-pressed={workChange === "전체"} onClick={() => { setWorkChange("전체"); setShowAll(false); }}>
+                전체
+              </button>
+              {WORK_CHANGE_ORDER.map((item) => (
+                <button type="button" className={workChange === item ? "filter-chip is-active" : "filter-chip"} aria-pressed={workChange === item} key={item} title={WORK_CHANGE_DESC[item]} onClick={() => { setWorkChange(workChange === item ? "전체" : item); setShowAll(false); }}>
                   {item}
                 </button>
               ))}
@@ -2327,10 +2475,14 @@ export default function Home() {
                   <span className={`stage-badge stage-${item.stage}`}>{item.stage}</span>
                 </div>
                 <div className="case-card-meta">
-                  <span className="case-theme">{themeOf(item)}</span>
+                  <span className="case-theme">{themeOf(item)} › {subThemeOf(item)}</span>
                   <time dateTime={item.date.replace(".", "-")}>{item.date}</time>
                 </div>
                 <div className="case-agency">{item.agency}</div>
+                <div className="case-classify">
+                  <span className="work-badge" title={WORK_CHANGE_DESC[workChangeOf(item)]}>{workChangeOf(item)}</span>
+                  <span className={sourceTypeOf(item) === "정부 원문" ? "src-badge src-gov" : "src-badge src-report"}>{sourceTypeOf(item)}</span>
+                </div>
                 <h3>{item.title}</h3>
                 <p className="case-summary">{item.summary}</p>
                 <div className="case-insight"><span>읽을 포인트</span>{item.insight}</div>
@@ -2362,17 +2514,21 @@ export default function Home() {
             <div className="section-heading split-heading compare-heading">
               <div>
                 <p className="eyebrow light">03 · MATRIX</p>
-                <h2 id="matrix-title">국가 × 업무방식 매트릭스</h2>
+                <h2 id="matrix-title">국가 × {matrixAxis === "theme" ? "업무방식" : "사람의 일"} 매트릭스</h2>
               </div>
-              <p className="section-intro light-copy">어느 나라가 AI를 ‘어느 업무방식’에 배치했는지 한눈에 봅니다. 숫자를 누르면 해당 사례로 이동합니다.</p>
+              <p className="section-intro light-copy">어느 나라가 AI를 ‘어느 {matrixAxis === "theme" ? "업무방식" : "방식으로 일을 바꾸는지"}’에 배치했는지 한눈에 봅니다. 숫자를 누르면 해당 사례로 이동합니다.</p>
+            </div>
+            <div className="matrix-axis-toggle" role="group" aria-label="매트릭스 축 선택">
+              <button type="button" className={matrixAxis === "theme" ? "is-active" : ""} aria-pressed={matrixAxis === "theme"} onClick={() => setMatrixAxis("theme")}>업무방식(주제)</button>
+              <button type="button" className={matrixAxis === "work" ? "is-active" : ""} aria-pressed={matrixAxis === "work"} onClick={() => setMatrixAxis("work")}>사람의 일</button>
             </div>
             <div className="matrix-scroll">
               <table className="matrix-table">
                 <thead>
                   <tr>
-                    <th scope="col" className="matrix-corner">국가 \ 업무방식</th>
-                    {THEME_ORDER.map((th) => (
-                      <th scope="col" key={th}>{th}</th>
+                    <th scope="col" className="matrix-corner">국가 \ {matrixAxis === "theme" ? "업무방식" : "사람의 일"}</th>
+                    {matrixCols.map((col) => (
+                      <th scope="col" key={col}>{col}</th>
                     ))}
                   </tr>
                 </thead>
@@ -2383,12 +2539,16 @@ export default function Home() {
                         <span aria-hidden="true">{row.flag}</span> {row.country}
                       </th>
                       {row.cells.map((cell) => (
-                        <td key={cell.theme} className={cell.count ? "matrix-cell has-count" : "matrix-cell"}>
+                        <td key={cell.col} className={cell.count ? "matrix-cell has-count" : "matrix-cell"}>
                           {cell.count ? (
                             <button
                               type="button"
-                              onClick={() => focusExplorer(() => { setCountry(row.country); setTheme(cell.theme); })}
-                              aria-label={`${row.country} · ${cell.theme} ${cell.count}건 보기`}
+                              onClick={() => focusExplorer(() => {
+                                setCountry(row.country);
+                                if (matrixAxis === "theme") { setTheme(cell.col as Theme); setSubTheme("전체"); setWorkChange("전체"); }
+                                else { setWorkChange(cell.col as WorkChange); setTheme("전체"); setSubTheme("전체"); }
+                              })}
+                              aria-label={`${row.country} · ${cell.col} ${cell.count}건 보기`}
                             >
                               {cell.count}
                             </button>
@@ -2402,7 +2562,7 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
-            <div className="compare-takeaway"><span>AXIS TAKEAWAY</span><p>공통 기반과 거버넌스는 여러 나라가 겹치지만, 현장·집행과 인재·업무개혁의 밀도는 나라마다 다릅니다. 빈 칸은 ‘아직 관측되지 않은 조합’입니다.</p></div>
+            <div className="compare-takeaway"><span>AXIS TAKEAWAY</span><p>주제축으로 보면 공통 기반·거버넌스가 여러 나라에 겹치고, ‘사람의 일’축으로 바꾸면 자동화·셀프서비스·기반화의 무게중심이 나라마다 다르게 드러납니다. 빈 칸은 ‘아직 관측되지 않은 조합’입니다.</p></div>
           </div>
         </section>
 
