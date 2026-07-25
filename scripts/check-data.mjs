@@ -25,9 +25,23 @@ let m;
 while ((m = caseRe.exec(src)) !== null) cases.push({ id: m[1], group: m[2] });
 
 // CASE_THEME 키: `"kebab-id": "테마"`(따옴표 있는 키)
-const themeUnion = THEMES.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
-const themeRe = new RegExp(`"([a-z0-9-]+)":\\s*"(${themeUnion})"`, "g");
-const themeKeys = new Set([...src.matchAll(themeRe)].map((x) => x[1]));
+const WORKCHANGE = ["자동화", "증강", "셀프서비스화", "재배치", "기반화"];
+const SUBTHEMES = [
+  "워크스페이스", "게이트웨이", "인프라", "AI조달", "개발환경", "공통기반",
+  "레지스트리", "규칙코드화", "오픈데이터", "상담·챗봇", "신청·원스톱", "서비스에이전트",
+  "재난·응급", "규제·집행", "지역·교육", "인재확보·육성", "내부BPR", "데이터기반관리",
+  "AI원칙·거버넌스", "감리·예산", "주권·자율성",
+];
+
+function keysFor(values) {
+  const union = values.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+  const re = new RegExp(`"([a-z0-9-]+)":\\s*"(${union})"`, "g");
+  return new Set([...src.matchAll(re)].map((x) => x[1]));
+}
+
+const themeKeys = keysFor(THEMES);
+const workKeys = keysFor(WORKCHANGE);
+const subKeys = keysFor(SUBTHEMES);
 
 const errors = [];
 const seen = new Set();
@@ -36,13 +50,17 @@ for (const c of cases) {
   seen.add(c.id);
 }
 for (const c of cases) {
-  if (c.group === "정부" && !themeKeys.has(c.id)) errors.push(`theme 누락(정부 사례): ${c.id}`);
+  if (!themeKeys.has(c.id)) errors.push(`theme 누락: ${c.id}`);
+  if (!workKeys.has(c.id)) errors.push(`workChange 누락: ${c.id}`);
+  if (!subKeys.has(c.id)) errors.push(`subTheme 누락: ${c.id}`);
 }
 for (const k of themeKeys) {
-  if (!seen.has(k)) errors.push(`orphan theme 키(존재하지 않는 사례): ${k}`);
+  if (!seen.has(k)) errors.push(`orphan theme 키: ${k}`);
 }
 
-console.log(`검사: 사례 ${cases.length}건 (정부 ${cases.filter((c) => c.group === "정부").length}), theme 키 ${themeKeys.size}개`);
+console.log(
+  `검사: 사례 ${cases.length}건 · theme ${themeKeys.size} · workChange ${workKeys.size} · subTheme ${subKeys.size}`,
+);
 if (errors.length) {
   console.error("❌ 데이터 무결성 오류:");
   for (const e of errors) console.error("  - " + e);

@@ -230,6 +230,27 @@ button { cursor: pointer; }
 .depth-toggle span { font-size: 10px; }
 .depth-hint { color: var(--muted); font-size: 11px; }
 
+/* 세부주제 / 사람의 일 필터 */
+.subtheme-row { margin-top: 6px; }
+.subtheme-row .filter-label { color: var(--cobalt); }
+.subtheme-row .filter-chip { font-size: 10px; }
+.work-row { margin-top: 6px; }
+.work-filter { flex-wrap: wrap; }
+
+/* 카드 분류 배지 (사람의 일 / 근거유형) */
+.case-classify { display: flex; align-items: center; gap: 6px; margin: 8px 0 15px; }
+.work-badge { background: #eef1f6; color: var(--navy); padding: 3px 8px; font-size: 9px; letter-spacing: .02em; border: 1px solid #dfe3ea; }
+.src-badge { padding: 3px 7px; font-size: 9px; letter-spacing: .02em; }
+.src-gov { background: #e7edf8; color: var(--cobalt); }
+.src-report { background: #f1ede4; color: var(--ochre); }
+.case-theme { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%; }
+
+/* 매트릭스 축 토글 */
+.matrix-axis-toggle { display: inline-flex; gap: 0; margin-bottom: 14px; border: 1px solid rgba(255,255,255,.28); }
+.matrix-axis-toggle button { background: transparent; color: #bcd0ee; border: 0; padding: 7px 15px; font-size: 12px; cursor: pointer; }
+.matrix-axis-toggle button + button { border-left: 1px solid rgba(255,255,255,.28); }
+.matrix-axis-toggle button.is-active { background: #1c477e; color: #fff; }
+
 .playbook-section { border-bottom: 1px solid var(--rule); }
 .playbook-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
 .playbook-card { padding: 23px 20px 24px; min-height: 255px; border-right: 1px solid var(--rule); transition: background .18s ease; }
