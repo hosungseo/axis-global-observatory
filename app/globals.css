@@ -196,6 +196,33 @@ button { cursor: pointer; }
 .compare-takeaway span { color: #b5c8e3; font-size: 10px; letter-spacing: .12em; }
 .compare-takeaway p { max-width: 700px; color: #f5f7fb; font-family: var(--serif); font-size: 19px; line-height: 1.45; margin: 0; word-break: keep-all; }
 
+/* 국가 인덱스 */
+.country-index { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 22px; }
+.country-chip { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--rule); background: transparent; color: #5c636b; padding: 5px 9px; font-size: 11px; cursor: pointer; }
+.country-chip em { font-style: normal; color: #9aa0a6; font-size: 10px; }
+.country-chip:hover, .country-chip.is-active { border-color: var(--cobalt); color: var(--cobalt); background: rgba(30,87,200,.06); }
+.country-chip.is-active em { color: var(--cobalt); }
+
+/* 주제(업무방식) 필터 행 */
+.theme-row { margin-top: 6px; }
+.theme-filter { flex-wrap: wrap; }
+
+/* 카드 주제 배지 / 소관 */
+.case-theme { display: inline-block; background: var(--paper-deep); color: #4a5360; padding: 3px 7px; font-size: 9px; letter-spacing: .02em; }
+.case-agency { color: #8a8b83; font-size: 11px; font-weight: 600; margin: 6px 0 17px; }
+
+/* 국가 × 업무방식 매트릭스 */
+.matrix-scroll { overflow-x: auto; border: 1px solid rgba(255,255,255,.18); }
+.matrix-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.matrix-table th, .matrix-table td { border: 1px solid rgba(255,255,255,.14); padding: 10px 8px; text-align: center; }
+.matrix-table thead th { color: #b5c8e3; font-size: 10px; font-weight: 600; background: rgba(255,255,255,.05); }
+.matrix-corner { text-align: left !important; color: #8fa6c6 !important; white-space: nowrap; }
+.matrix-country { text-align: left !important; color: #fff; font-size: 12px; white-space: nowrap; background: rgba(255,255,255,.05); }
+.matrix-cell { color: rgba(255,255,255,.26); font-size: 13px; }
+.matrix-cell.has-count { background: rgba(30,87,200,.16); }
+.matrix-cell button { border: 0; background: transparent; color: #dbe6f7; font-family: var(--serif); font-size: 16px; width: 100%; padding: 2px; cursor: pointer; }
+.matrix-cell button:hover { color: #fff; text-decoration: underline; }
+
 .playbook-section { border-bottom: 1px solid var(--rule); }
 .playbook-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
 .playbook-card { padding: 23px 20px 24px; min-height: 255px; border-right: 1px solid var(--rule); transition: background .18s ease; }
