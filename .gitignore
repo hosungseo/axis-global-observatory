@@ -34,6 +34,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# 자동 소싱 산출물 (npm run source:candidates 로 재생성 가능)
+/data/candidates.json
+/data/candidates.md
+
+# oh-my-claudecode 작업 아티팩트
+/.omc/
+
 # typescript
 next-env.d.ts
 /dist/
