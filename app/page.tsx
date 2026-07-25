@@ -945,6 +945,96 @@ const JAPAN_EXECUTION_ITEMS: CaseStudy[] = [
     group: "정부",
     url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
   },
+  {
+    id: "japan-internal-talent",
+    code: "5-25",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "확산",
+    date: "2026.07",
+    agency: "Cabinet Secretariat · Digital Agency",
+    title: "정부 디지털인재 내부 육성",
+    summary: "각 부처가 「디지털인재 확보·육성계획」에 기술인정 목표와 고위직까지의 인사경로를 설정해 내부 전문인재를 계획적으로 육성하고, ‘사이버보안 인재 프레임워크 2026’을 반영하며 실무연수·자격·처우로 육성을 가속한다.",
+    insight: "외부 임용과 짝을 이뤄, 내부 직원을 기술인정·인사경로·처우로 전문인재로 키운다.",
+    metric: "연수 지식 활용 응답 80% 목표",
+    tags: ["내부육성", "기술인정", "보안인재"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    id: "japan-procurement-gate",
+    code: "8-2",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "실증",
+    date: "2026.07",
+    agency: "Digital Agency",
+    title: "정보시스템 횡단 조달관리·게이트 통제",
+    summary: "디지털청이 신규·개수 시스템을 내부개발할지 외부위탁할지 판단하고 단계별 게이트관리를 통일 기준·승인절차로 실시하며, 보안·운영감시 등 업무를 집약하고 가동 후 성과정보를 정기 수집해 미달 시스템을 개선 지원한다.",
+    insight: "시스템 조달을 부처 재량이 아니라 통일 게이트·성과추적으로 횡단 통제한다.",
+    metric: "2026년도 통일 게이트·승인체계 정비",
+    tags: ["조달거버넌스", "게이트관리", "성과추적"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/208168e8/20260721_policies_priority_outline_03.pdf",
+  },
+  {
+    id: "japan-total-design",
+    code: "3-71",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "전략",
+    date: "2026.07",
+    agency: "Digital Agency",
+    title: "토털 디자인 — 스마트폰 60초 절차완료",
+    summary: "‘스마트폰 60초 절차완료·7일 서비스개시·민간 수준 비용’을 목표로 시스템·제도·업무를 일체 개혁하고, 출생·육아 분야 절차를 하나의 양식으로 온라인 일괄신청하며 같은 항목은 한 번만 입력하는 원스온리를 구현한다.",
+    insight: "개별 절차 온라인화를 넘어 ‘60초·원스온리’라는 이용자 경험 목표로 제도·업무를 함께 바꾼다.",
+    metric: "2026 여름 출생·육아 일괄신청 정비",
+    tags: ["토털디자인", "원스온리", "출생육아"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-wellbeing-index",
+    code: "2-13",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "주·지방",
+    stage: "확산",
+    date: "2026.07",
+    agency: "Digital Agency",
+    title: "지역행복도(Well-Being) 지표 기반 지역문제 해결",
+    summary: "약 250개 지자체가 쓰는 지역행복도 지표 데이터세트와 대시보드를 개선·확산해, 관민 워크숍에서 분야횡단 정책입안과 주민참여형 지역만들기를 활성화한다.",
+    insight: "지자체 정책을 감이 아니라 공통 행복도 지표·대시보드 위에서 설계하게 한다.",
+    metric: "2030년말 활용 지자체 450개(전국 1/4)",
+    tags: ["Well-Being지표", "데이터기반", "지방창생"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
+  {
+    id: "japan-hellowork",
+    code: "3-197",
+    flag: "🇯🇵",
+    country: "일본",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "운영",
+    date: "2026.07",
+    agency: "Ministry of Health, Labour and Welfare",
+    title: "헬로워크 온라인 고용서비스 확충",
+    summary: "온라인 구인·구직 신청과 마이페이지로 방문 없이 구직활동을 가능하게 하고, 구직자 상황별 개별지원·정착지원과 고용보험업무 디지털화로 진짜 지원이 필요한 이용자 서비스를 확충한다.",
+    insight: "창구 방문형 고용서비스를 온라인 셀프서비스와 표적 지원으로 재편한다.",
+    metric: "2026년도 구직자 마이페이지 이용률 50%",
+    tags: ["고용서비스", "온라인신청", "표적지원"],
+    group: "정부",
+    url: "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/5ecac8cc-50f1-4168-b989-2bcaabffe870/a9e38e03/20260721_policies_priority_outline_04.pdf",
+  },
 ];
 
 const JAPAN_POLICY_FEATURED_ITEMS = JAPAN_EXECUTION_ITEMS.slice(0, 18);
@@ -1428,6 +1518,91 @@ const CASE_STUDIES: CaseStudy[] = [
     url: "https://www.numerique.gouv.fr/offre-accompagnement/expertise-albert-ia-etat/",
   },
   {
+    id: "germany-baergpt-berlin",
+    flag: "🇩🇪",
+    country: "독일",
+    region: "유럽",
+    scope: "주·지방",
+    stage: "운영",
+    date: "2025.11",
+    agency: "베를린 상원 · Technologiestiftung Berlin",
+    title: "베를린 행정 전용 AI 비서 ‘BärGPT’",
+    summary: "베를린주가 공무원 업무 지원을 위해 자체 개발한 오픈소스 기반 AI 비서 BärGPT를 출시했다. 텍스트 생성·번역·요약, 문서 자동 분석, 행정지식 RAG 검색을 제공하며 데이터 보호 기준을 충족하도록 공무원과 애자일하게 함께 만들었다.",
+    insight: "생성형 AI를 외부 상용 서비스가 아니라 데이터주권·오픈소스 기반 자체 행정도구로 내재화해 인력난에 대응한다.",
+    metric: "2025.11.25 출시 · 오픈소스 기반",
+    tags: ["내부생산성", "데이터주권", "오픈소스"],
+    group: "정부",
+    url: "https://www.berlin.de/en/news/10042018-5559700-berlin-relies-on-its-own-ai-assistant-in.en.html",
+  },
+  {
+    id: "taiwan-taigto-ai-talent-office",
+    flag: "🇹🇼",
+    country: "대만",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "확산",
+    date: "2025.07",
+    agency: "디지털부(MODA) · 인사행정총처(DGPA)",
+    title: "대만 ‘AI 정부인재판공실(TAIGTO)’과 공용 실험 플랫폼",
+    summary: "대만 정부가 디지털부와 인사행정총처 공동으로 ‘AI 정부인재판공실(TAIGTO)’을 출범해 부처 간 AI 인재 양성과 공무 적용을 총괄하고, 10종 이상 LLM을 시험하는 정부 AI 샌드박스(TryAI)와 재사용 봇 20종 이상의 ‘AI 봇 마켓플레이스’를 함께 제공한다.",
+    insight: "개별 챗봇 도입을 넘어 인재 양성·공용 샌드박스·재사용 봇 마켓플레이스를 하나의 국가 플랫폼으로 묶어 중복개발을 줄인다.",
+    metric: "2025.7 출범 · LLM 10종+ · 재사용 봇 20종+",
+    tags: ["공용플랫폼", "인력양성", "거버넌스"],
+    group: "정부",
+    url: "https://moda.gov.tw/en/press/press-releases/16896",
+  },
+  {
+    id: "uae-u-ask-unified-chatbot",
+    flag: "🇦🇪",
+    country: "아랍에미리트",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "운영",
+    date: "2023.05",
+    agency: "통신·디지털정부규제청(TDRA)",
+    title: "UAE 통합 정부서비스 AI 챗봇 ‘U-Ask’",
+    summary: "UAE 연방정부가 시민·거주자·근로자·학생·방문자·투자자의 정부서비스 문의에 답하는 통합 생성형 AI 챗봇 U-Ask를 공식 포털에서 운영한다. 아랍어·영어로 서비스 요건·맞춤 정보·신청 링크를 한 곳에서 24시간 제공한다.",
+    insight: "부처별로 흩어진 서비스 안내를 단일 생성형 AI 창구로 통합해 ‘서비스 탐색’ 자체를 재설계했다.",
+    metric: "아랍어·영어 24/7 · Gartner 2023 수상",
+    tags: ["대민서비스", "생성형AI", "서비스재설계"],
+    group: "정부",
+    url: "https://u.ae/en/about-the-uae/digital-uae/digital-technology/artificial-intelligence/chatgpt",
+  },
+  {
+    id: "india-bhashini-language-ai-dpi",
+    flag: "🇮🇳",
+    country: "인도",
+    region: "아시아·태평양",
+    scope: "중앙·연방",
+    stage: "운영",
+    date: "2022.07",
+    agency: "전자정보기술부(MeitY) · Digital India Bhashini",
+    title: "인도 다국어 정부서비스 언어 AI 공공인프라 ‘Bhashini’",
+    summary: "인도의 플래그십 언어 플랫폼 Bhashini는 22개 헌법 지정 언어에 대한 실시간 번역·음성인식·음성합성을 공공 디지털 인프라(DPI)로 제공하고, 시민의 정부서비스·디지털 콘텐츠 접근과 의회 회의록까지 다국어로 연결한다.",
+    insight: "언어 장벽을 공공 API 스택으로 해소해 모든 정부서비스에 재사용 가능한 다국어 계층을 깔았다.",
+    metric: "22개 언어 · 300+ 언어 AI 모델 · 월 1억+ 추론",
+    tags: ["언어AI", "디지털공공인프라", "포용성"],
+    group: "정부",
+    url: "https://ddnews.gov.in/en/indias-22-languages-go-digital-ai-platforms-like-bhashini-bharatgen-and-adi-vaani-lead-the-multilingual-revolution/",
+  },
+  {
+    id: "ukraine-diia-ai-agent",
+    flag: "🇺🇦",
+    country: "우크라이나",
+    region: "유럽",
+    scope: "중앙·연방",
+    stage: "운영",
+    date: "2025.09",
+    agency: "디지털전환부(Ministry of Digital Transformation)",
+    title: "우크라이나 국가 AI 에이전트 ‘Diia.AI’",
+    summary: "우크라이나 디지털전환부가 상담을 넘어 실제 공공서비스를 신청·처리해 주는 국가급 AI 에이전트 Diia.AI를 Diia 포털에 출시했다. 채팅으로 요청하면 소득증명 등 서류를 양식 작성 없이 발급하며, 저코드 플랫폼과 MCP로 정부서비스에 연결된다.",
+    insight: "챗봇이 ‘안내’에서 ‘서비스 이행(에이전트)’으로 진화한 전환점으로, 정부서비스를 AI-네이티브 아키텍처로 재구성한다.",
+    metric: "2025.09 출시 · 채팅으로 서비스 신청·발급",
+    tags: ["AI에이전트", "서비스재설계", "AI네이티브정부"],
+    group: "정부",
+    url: "https://digitalstate.gov.ua/news/govtech/diiaai-building-the-architecture-of-an-ai-native-state",
+  },
+  {
     id: "mckinsey-operating-model",
     flag: "◌",
     country: "글로벌",
@@ -1658,10 +1833,27 @@ const CASE_THEME: Record<string, Theme> = {
   "japan-public-saas": "조달·개발",
   "japan-tax-social-online": "대민 서비스",
   "japan-police-dx": "현장·집행",
+  // 4차 보강
+  "japan-internal-talent": "인재·업무개혁",
+  "japan-procurement-gate": "거버넌스·주권",
+  "japan-total-design": "대민 서비스",
+  "japan-wellbeing-index": "현장·집행",
+  "japan-hellowork": "대민 서비스",
+  // 지리적 균형 보강 (신규 5개국)
+  "germany-baergpt-berlin": "공통 기반",
+  "taiwan-taigto-ai-talent-office": "인재·업무개혁",
+  "uae-u-ask-unified-chatbot": "대민 서비스",
+  "india-bhashini-language-ai-dpi": "공통 기반",
+  "ukraine-diia-ai-agent": "대민 서비스",
 };
 
 function themeOf(item: CaseStudy): Theme {
   return CASE_THEME[item.id] ?? "거버넌스·주권";
+}
+
+// '심화 시책' = 코드가 붙은 일본 중점계획 개별 항목. 기본 화면에서는 접어 편중을 줄인다.
+function isDeepPolicy(item: CaseStudy): boolean {
+  return item.group === "정부" && Boolean(item.code);
 }
 
 const SIGNALS = [
@@ -1761,24 +1953,30 @@ export default function Home() {
   const [country, setCountry] = useState<string>("전체");
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [showDeep, setShowDeep] = useState(false);
 
   const filteredCases = useMemo(() => {
     const query = search.trim().toLowerCase();
+    // 국가·주제·검색 등 명시적 조건이 있으면 심화 시책도 함께 보여준다.
+    const explicit = country !== "전체" || theme !== "전체" || Boolean(query);
     return CASE_STUDIES.filter((item) => {
       const matchesGroup = group === "전체" || item.group === group;
       const matchesRegion = region === "전체" || item.region === region;
       const matchesStage = stage === "전체" || item.stage === stage;
       const matchesTheme = theme === "전체" || themeOf(item) === theme;
       const matchesCountry = country === "전체" || item.country === country;
+      const matchesDepth = showDeep || explicit || !isDeepPolicy(item);
       const matchesQuery =
         !query ||
         [item.country, item.agency, item.title, item.summary, item.insight, ...item.tags]
           .join(" ")
           .toLowerCase()
           .includes(query);
-      return matchesGroup && matchesRegion && matchesStage && matchesTheme && matchesCountry && matchesQuery;
+      return matchesGroup && matchesRegion && matchesStage && matchesTheme && matchesCountry && matchesDepth && matchesQuery;
     }).sort((a, b) => b.date.localeCompare(a.date));
-  }, [group, region, stage, theme, country, search]);
+  }, [group, region, stage, theme, country, search, showDeep]);
+
+  const deepCount = CASE_STUDIES.filter(isDeepPolicy).length;
 
   const governmentCount = CASE_STUDIES.filter((item) => item.group === "정부").length;
   const privateCount = CASE_STUDIES.filter((item) => item.group === "민간").length;
@@ -2084,6 +2282,19 @@ export default function Home() {
                 </button>
               ))}
             </div>
+          </div>
+
+          <div className="depth-toggle-row">
+            <button
+              type="button"
+              className={showDeep ? "depth-toggle is-active" : "depth-toggle"}
+              aria-pressed={showDeep}
+              onClick={() => { setShowDeep((v) => !v); setShowAll(false); }}
+            >
+              <span aria-hidden="true">{showDeep ? "▾" : "▸"}</span>
+              일본 중점계획 심화 시책 {showDeep ? "접기" : `펼치기 (+${deepCount})`}
+            </button>
+            <span className="depth-hint">기본 화면은 대표 사례만 보여줍니다. 국가·주제·검색을 지정하면 심화 시책도 함께 표시됩니다.</span>
           </div>
 
           <div className="case-grid">
