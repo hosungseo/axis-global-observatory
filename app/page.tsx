@@ -2039,6 +2039,28 @@ export default function Home() {
         본문으로 건너뛰기
       </a>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Dataset",
+            name: "AXIS — Global AX Observatory",
+            description:
+              "전 세계 정부·공공기관이 AI로 일하는 방식을 원문 기반으로 비교하는 관측소. 성숙도 구분과 업무방식 7개 주제로 정부 AI 전환 사례를 정리한다.",
+            url: "https://hosungseo.github.io/axis-global-observatory/",
+            inLanguage: "ko",
+            isAccessibleForFree: true,
+            dateModified: "2026-07-26",
+            creator: { "@type": "Person", name: "hosungseo" },
+            measurementTechnique: "primary-source curation",
+            keywords: ["government AI", "public sector AI", "AX", "digital government", ...THEME_ORDER],
+            variableMeasured: THEME_ORDER,
+            size: `${CASE_STUDIES.length} cases · ${countCountries(CASE_STUDIES)} countries/regions`,
+          }),
+        }}
+      />
+
       <div className="top-strip">
         <div className="top-strip-inner">
           <span className="status-dot" aria-hidden="true" />
@@ -2096,9 +2118,9 @@ export default function Home() {
               <span className="brief-issue">#01</span>
             </div>
             <div className="brief-rule" />
-            <p className="brief-title">공통 기반은 빨라지고, 업무 재설계는 뒤처진다</p>
+            <p className="brief-title">같은 문제, 17개국의 다른 답</p>
             <p className="brief-text">
-              일본은 18만 명 규모의 정부 AI를 확장하고, 한국은 공공 AI 도입 과정을 표준화했습니다. 동시에 기업 리서치는 ‘시간을 아끼는 것’과 ‘일을 바꾸는 것’ 사이의 간극을 지적합니다.
+              일본은 중점계획으로 업무 인프라를 통째로 재설계하고, 프랑스·독일은 주권형 자체 AI를, 우크라이나는 서비스를 직접 이행하는 AI 에이전트를 택했습니다. 95개 원문 사례를 업무방식 7개 주제로 비교합니다.
             </p>
             <a className="brief-read" href="#signals">
               이번 주 신호 읽기 <span aria-hidden="true">↗</span>

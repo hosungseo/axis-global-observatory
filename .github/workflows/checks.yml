@@ -1,0 +1,32 @@
+name: Data & Link Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 0 * * 1" # 매주 월요일 00:00 UTC 링크 점검
+  workflow_dispatch:
+
+jobs:
+  data:
+    name: 데이터 무결성
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/check-data.mjs
+
+  links:
+    name: 원문 링크 점검
+    # push/PR마다 95개 정부 URL을 때리지 않도록 예약·수동 실행에서만
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/check-links.mjs

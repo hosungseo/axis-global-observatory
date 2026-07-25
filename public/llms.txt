@@ -1,0 +1,31 @@
+# AXIS — Global AX Observatory
+
+> 전 세계 정부·공공기관이 AI로 '일하는 방식'을 어떻게 바꾸는지 원문 기반으로 비교하는 관측소입니다. 기술 도입 뉴스가 아니라, 누가 어떤 업무를 맡고 무엇이 달라졌는지를 1차 자료(정부·기관 발표, 1차 보고서)에 연결해 정리합니다. 2026년 7월 기준 17개 국가·권역, 95개 검증 사례.
+
+## 읽는 방법
+- 각 사례는 국가·기관·발표시점·요약·AX 통찰·핵심 수치·원문 링크를 갖습니다.
+- 성숙도(전략·실증·확산·운영)를 구분해 파일럿을 성과로 오해하지 않습니다.
+- 모든 사례를 '업무방식' 7개 주제로 분류합니다.
+
+## 업무방식 7개 주제
+- 공통 기반·워크스페이스: 정부 공통 AI 환경·게이트웨이·클라우드
+- 조달·개발 방식: AI 활용 조달, 내부개발, 공통개발기반
+- 데이터·규칙·레지스트리: 베이스 레지스트리, 법령데이터, Rules as Code, 오픈데이터
+- 대민 서비스 재설계: 상담 챗봇, 원스톱 신청, 서비스 이행형 에이전트
+- 현장·집행 자동화: 재난·응급·규제집행·통관 등 현장 업무
+- 인재·역량·업무개혁: 디지털인재 육성·임용, 내부 BPR
+- 거버넌스·주권·감리: AI 원칙, 사용 등록부, 예산·감리, 주권형 AI
+
+## 대표 사례
+- [일본 디지털사회 중점계획](https://www.digital.go.jp/en/policies/genai): 업무 인프라를 통째로 재설계하는 국가 실행모델(중점계획 381 시책)
+- [프랑스 Albert](https://www.numerique.gouv.fr/offre-accompagnement/expertise-albert-ia-etat/): 주권형(SecNumCloud) 부처 공통 생성형 AI 플랫폼
+- [우크라이나 Diia.AI](https://digitalstate.gov.ua/news/govtech/diiaai-building-the-architecture-of-an-ai-native-state): 상담을 넘어 공공서비스를 직접 이행하는 국가 AI 에이전트
+- [미국 GSA USAi](https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-launches-usai-to-advance-white-house-americas-ai-action-plan-08142025): 전 연방기관 공통 생성형 AI 평가 플랫폼
+- [한국 AI 정부 실험실](https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=128081): 공무원이 대화형 코딩으로 직접 만든 AI 과제
+
+## 링크
+- 사이트: https://hosungseo.github.io/axis-global-observatory/
+- 방법론: 원문 우선 · 상태 분리 · 사람의 일 표시
+
+## 주의
+- 수치는 각 원문 발표 기준입니다. 정부 발표와 민간 리서치는 성격이 다르므로 직접 비교보다 설계 질문을 찾는 용도로 읽으세요.
